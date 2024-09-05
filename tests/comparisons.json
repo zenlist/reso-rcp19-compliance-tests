@@ -124,6 +124,31 @@
     ]
   },
   {
+    "name": "Cross-type equality",
+    "context": {
+      "value": {}
+    },
+    "checks": [
+      { "expr": "0 = \"\"", "expected": false },
+      { "expr": "0 != \"\"", "expected": true },
+      { "expr": "0 = .TRUE.", "expected": false },
+      { "expr": "0 != .TRUE.", "expected": true },
+      { "expr": "0 = .FALSE.", "expected": false },
+      { "expr": "0 != .FALSE.", "expected": true },
+      { "expr": ".TRUE. = \"\"", "expected": false },
+      { "expr": ".TRUE. != \"\"", "expected": true },
+      { "expr": ".FALSE. = \"\"", "expected": false },
+      { "expr": ".FALSE. != \"\"", "expected": true },
+      { "expr": "LIST() = .EMPTY.", "expected": false },
+      { "expr": "LIST() != .EMPTY.", "expected": true },
+
+      { "expr": "0 != \"0\"", "expected": true },
+      { "expr": "1 != \"1\"", "expected": true },
+      { "expr": ".FALSE. != \"0\"", "expected": true },
+      { "expr": ".TRUE. != \"1\"", "expected": true }
+    ]
+  },
+  {
     "name": "Comparisons including IIF",
     "context": {
       "value": {
