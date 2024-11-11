@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Comments",
+    "context": {
+      "value": {
+        "Number": 1,
+        "Bool": true,
+        "String": "Hey"
+      },
+      "previousValue": {
+        "Number": 2,
+        "Bool": false,
+        "String": "Hi"
+      }
+    },
+    "checks": [
+      { "expr": "// Single-line comment\n1", "expected": 1 },
+      { "expr": "// First line\n// Second line\n1", "expected": 1 },
+      {
+        "expr": "1 // Last line is a comment with no trailing newline",
+        "expected": 1
+      },
+      { "expr": "/* Multi-line comment on a single line */ 1", "expected": 1 },
+      {
+        "expr": "/* Multi-line comment\n on multiple\n lines */ 1",
+        "expected": 1
+      },
+      {
+        "expr": "IIF(.TRUE. /* .AND. .FALSE. */, 1, 2)",
+        "expected": 1
+      },
+      {
+        "expr": "IIF(.TRUE. // .AND. .FALSE.\n, 1, 2)",
+        "expected": 1
+      },
+      {
+        "expr": "1 /* Not greedy */ + 2 /* this is a separate comment */",
+        "expected": 3
+      },
+      {
+        "expr": "1 /* // */ + 2",
+        "expected": 3
+      },
+      {
+        "expr": "1 // /*\n + 2\n// */",
+        "expected": 3
+      }
+    ]
+  }
+]
